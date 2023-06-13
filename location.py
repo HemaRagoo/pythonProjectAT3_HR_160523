@@ -1,9 +1,9 @@
 class Location:
-    def __init__(self, name, description, directions):
+    def __init__(self, name, description, directions, access_status):
         self.name = name
         self.description = description
         self.item = []
         self.directions = directions
-        self.locked = False
+        self.is_accessible = access_status
 
 

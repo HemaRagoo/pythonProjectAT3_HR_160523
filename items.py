@@ -21,7 +21,7 @@ class Drink(Item):
 
 
 if __name__ == "__main__":
-    special_key = Key("special")
+    killer_key = Key("Killer Key")
     merlion_key = Key("Merlion Key")
     singaporean_drink = Drink("Kopi")
     australian_drink = Drink("Beer")
