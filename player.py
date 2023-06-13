@@ -3,13 +3,31 @@ from items import Key, Drink
 
 
 class Player:
-    def __init__(self, name, items):
+    def __init__(self, name, items, map_size):
         self.name = name
         self.current_location = [0, 0]
         self.backpack = BackPack(items)
+        self.map_size = map_size
 
     def __repr__(self):
         return self.name
+
+    def move(self, direction):
+        x, y = self.current_location
+        if direction == "N" and y > 0:
+            self.current_location = (x, y - 1)
+        elif direction == "S" and y < self.map_size - 1:
+            self.current_location = (x, y + 1)
+        elif direction == "W" and x > 0:
+            self.current_location = (x - 1, y)
+        elif direction == "E" and x < self.map_size - 1:
+            self.current_location = (x + 1, y)
+        else:
+            print("You cannot move in that direction from here.")
+            return
+
+        print("You move to", self.current_location)
+
 
     # def move(self, direction):
     #     x, y = self.current_location

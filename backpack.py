@@ -6,10 +6,10 @@ class BackPack:
 
     ToDo: [X] Instantiate backpack
     ToDo: [X] Add Item
-    ToDo: [ ] Remove Item
+    ToDo: [X] Remove Item
     ToDo: [ ] List Items
     ToDo: [X] Count items
-    ToDo: [ ] in backpack (Search for Item - Student to do)
+    ToDo: [X] in backpack (Search for Item - Student to do)
     ToDo: [X] Sort Items
 
     """
@@ -35,7 +35,12 @@ class BackPack:
         return len(self._backpack)
 
     def list(self):
+        """no need to implement-not relevant to my game"""
         pass
+
+    def remove(self, item):
+        if item is not None:
+            self._backpack.remove(item)
 
     def add(self, item):
         if item is not None:
