@@ -11,8 +11,18 @@ class Player:
     def __repr__(self):
         return self.name
 
-    # def move(self, direction):
-    #     x, y = self.current_location
+    def move(self, direction):
+        [x, y] = self.current_location
+        if direction == "north":
+            self.current_location[1] = y - 1
+        elif direction == "south":
+            self.current_location[1] = y + 1
+        elif direction == "east":
+            self.current_location[0] = x + 1
+        elif direction == "west":
+            self.current_location[0] = x - 1
+        # print(self.current_location)
+
     #     if direction == "N" and y > 0:
     #         self.current_location = (x, y - 1)
     #     elif direction == "S" and y < MAP_SIZE - 1:
@@ -70,8 +80,3 @@ if __name__ == "__main__":
     singaporean_drink = Drink("Kopi")
     australian_drink = Drink("Beer")
     player = Player("hema", [door_key, singaporean_drink])
-
-    print(player)
-    print(player.backpack)
-    print(player.backpack.in_backpack(door_key))
-    print(player.backpack[1])
