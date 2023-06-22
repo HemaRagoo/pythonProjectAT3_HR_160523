@@ -1,0 +1,24 @@
+The program has a name that reflects the adventure’s world.
+The program has a world that contains at least 2 locations (if the map is >= 3x3) or 4 locations if grid = map. Each location has a unique name, a description, and zero or more objects.
+The program allows the player to navigate the world. It should at least offer to go in the directions N, E, W, and S. The program shows available exits from every location. The player can move in these four directions by only typing the corresponding letter. E.g., entering just the letter N will mean the player moves North.
+.
+
+There should be at least two different properties of items and/or two characters that the player can interact with. (but there must be at least 5 instances of items that can be kept in the rucksack)
+For the purpose of holding objects, the player should have a “rucksack” or similar holding device (i.e., an Inventory).
+The inventory may hold multiple items at a time. Items should be stored using their unique names. Items must be searched using a simple [binary search technique].
+The adventure must have at least one conditional action. A conditional action is an action that can only be performed if a certain prerequisite holds. For example, a certain door may only open if the player has a key.
+The adventure must store a simple map (2D) [use a 2D data structure] in a file. This map should be updated using a random-access algorithm. The map should have X’s for places that have been visited and a ▢ (space) for places that have not been visited. You may choose to implement random access techniques in this or any other file operation in your code.
+The adventure must have a certain goal: that is how to win the game. For example: “Your task is to re-engage the safety system of the reactor core to prevent a core meltdown.” In addition, it’s possible for the player to lose the game (“game over”) under certain conditions.
+After winning or losing the game, the players should be able to start a new game.
+The adventure was developed using an IDE.
+The adventure must be built using a modular approach, preferable in an object-oriented fashion. This means multiple sources files must be used, for example, one per class.
+The adventure must be tested in a useful way. Unit tests are encouraged, but acceptance tests can also be used (you document the steps you took to validate that the code met the requirements).
+The code must have useful documentation, e.g., docstrings, comments, etc.
+The adventure must have clear instructions for the player. No guesswork as to how to run the program is allowed. The instructions must also explain how to win the game. The instructions can be embedded in the game (preferred) or in a README.md
+The adventure should follow the “General game play of text adventures” that is described in the Project Scenario. This includes:
+-	A starting description of the game
+-	Show available exits (mentioned before)
+-	Interaction with characters, e.g., “ask information”, “give dime”, etc.
+-	Use commands like “look clock”, “get key”, etc. Commands should be kept simple, e.g., in the form of “<verb> <noun>”, for example, “light match”.
+-	Optional: Items can be fixed, not fixed, (in)visible, having a condition
+-	List player’s possessions with the I or Inventory command

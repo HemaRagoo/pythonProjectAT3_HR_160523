@@ -1,82 +1,41 @@
+from location import Location
+from map import Map
 from backpack import BackPack
-from items import Key, Drink
 
 
 class Player:
-    def __init__(self, name, items):
+    def __init__(self, name, starting_location):
         self.name = name
-        self.current_location = [0, 0]
-        self.backpack = BackPack(items)
+        self.current_location = starting_location
+        self.backpack = BackPack([])
 
-    def __repr__(self):
-        return self.name
+    def move(self, direction, game_map):
+        available_exits = game_map.get_available_exits()
+        if direction in available_exits:
+            row, col = self.current_location
+            if direction == 'N':
+                row -= 1
+            elif direction == 'S':
+                row += 1
+            elif direction == 'W':
+                col -= 1
+            elif direction == 'E':
+                col += 1
 
-    def move(self, direction):
-        [x, y] = self.current_location
-        if direction == "north":
-            self.current_location[1] = y - 1
-        elif direction == "south":
-            self.current_location[1] = y + 1
-        elif direction == "east":
-            self.current_location[0] = x + 1
-        elif direction == "west":
-            self.current_location[0] = x - 1
-        # print(self.current_location)
+            if 0 <= row < game_map.map_size and 0 <= col < game_map.map_size:
+                self.current_location = (row, col)
+                game_map.visit_location(self.current_location)
+                return True
+            else:
+                print("Warning: Out of bounds!")
+        else:
+            print("Warning: Invalid direction!")
 
-    #     if direction == "N" and y > 0:
-    #         self.current_location = (x, y - 1)
-    #     elif direction == "S" and y < MAP_SIZE - 1:
-    #         self.current_location = (x, y + 1)
-    #     elif direction == "W" and x > 0:
-    #         self.current_location = (x - 1, y)
-    #     elif direction == "E" and x < MAP_SIZE - 1:
-    #         self.current_location = (x + 1, y)
-    #     else:
-    #         print("You cannot move in that direction from here.")
-    #         return
-    #
-    #     print("You move to", self.get_current_location())
-    #
-    # def get_current_location(self):
-    #     x, y = self.current_location
-    #     for location, coords in LOCATIONS.items():
-    #         if coords == (x, y):
-    #             return location
+        return False
 
-    # def add_item_to_backpack(self, item):
-    #     self.backpack.append(item)
-    #     print(f"You have added {item.name} to your backpack.")
-    #
-    # def remove_item_from_backpack(self, item):
-    #     if item in self.backpack:
-    #         self.backpack.remove(item)
-    #         print(f"You have removed {item.name} from your backpack.")
-    #     else:
-    #         print(f"{item.name} is not in your backpack.")
-    #
-    # def show_backpack_contents(self):
-    #     if self.backpack:
-    #         print("Your backpack contains:")
-    #         for item in self.backpack:
-    #             print(item.name)
-    #     else:
-    #         print("Your backpack is empty.")
-    #
-    # def pick_up_item(self, item):
-    #     self.backpack.append(item)
-    #     print(f"You have picked up {item.name}.")
-    #
-    # def drop_item(self, item):
-    #     if item in self.backpack:
-    #         self.backpack.remove(item)
-    #         print(f"You have dropped {item.name}.")
-    #     else:
-    #         print(f"{item.name} is not in your backpack.")
+    def pick_up_item(self, item):
+        self.backpack.add(item)
 
 
-if __name__ == "__main__":
-    special_key = Key("special")
-    door_key = Key("door")
-    singaporean_drink = Drink("Kopi")
-    australian_drink = Drink("Beer")
-    player = Player("hema", [door_key, singaporean_drink])
+if __name__ == '__main__':
+    map1 = Map(2)
